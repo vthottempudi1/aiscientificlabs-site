@@ -6,6 +6,7 @@
 import { site } from "@/lib/site";
 import { PipelineDiagram } from "@/components/pipeline-diagram";
 import { ContactForm } from "@/components/contact-form";
+import { MobileMenu } from "@/components/mobile-menu";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import { NumberTicker } from "@/components/magicui/number-ticker";
 import { Marquee } from "@/components/magicui/marquee";
@@ -43,6 +44,49 @@ const steps = [
   { title: "Build with evaluation gates", body: "Each release is measured on a fixed test set (faithfulness, retrieval precision, prediction error) and blocked if it regresses." },
   { title: "Keep people in the loop", body: "High-stakes steps, such as generated database queries or regulatory summaries, go to a reviewer before they take effect." },
   { title: "Deploy and hand over", body: "Containerised deployment in your own cloud, with monitoring, runbooks and documentation your team owns." },
+];
+
+// Section links in the header (and the phone menu)
+const navLinks = [
+  { href: "#services", label: "Services" },
+  { href: "#lab", label: "Lab" },
+  { href: "#approach", label: "Approach" },
+  { href: "#writing", label: "Writing" },
+  { href: "#about", label: "About" },
+];
+
+// Medium series on enterprise RAG, in reading order
+const articles = [
+  {
+    part: 1,
+    title: "Building an enterprise-grade advanced RAG system",
+    body: "What it took beyond the demo: structured and unstructured data, safety controls, evidence, cost and repeatable quality measurement.",
+    href: "https://ai.plainenglish.io/building-an-enterprise-grade-advanced-rag-system-what-it-took-beyond-the-demo-3f30e2025dad",
+  },
+  {
+    part: 2,
+    title: "One chat interface, three sources of truth",
+    body: "How one question-answering system routes between document retrieval, SQL and a hybrid of both.",
+    href: "https://ai.plainenglish.io/most-enterprise-ai-assistants-begin-with-a-deceptively-simple-interface-one-text-box-94aa92106767",
+  },
+  {
+    part: 3,
+    title: "Retrieval is a pipeline",
+    body: "Sentence-aware chunking, hybrid search and reranking, and why wrong evidence often starts well before the reranker.",
+    href: "https://ai.plainenglish.io/retrieval-is-a-pipeline-sentence-aware-chunking-hybrid-search-and-reranking-43a289c9c41f",
+  },
+  {
+    part: 4,
+    title: "Evaluating RAG without fooling yourself",
+    body: "Source precision, source recall and sealed holdouts, for answers that look right but rest on the wrong evidence.",
+    href: "https://ai.plainenglish.io/evaluating-rag-without-fooling-yourself-article-4-of-5-d29c80231aff",
+  },
+  {
+    part: 5,
+    title: "When five relevant chunks still cannot answer the question",
+    body: "Why retrieving relevant passages is not the same as having the evidence to answer the whole question.",
+    href: "https://ai.plainenglish.io/enterprise-advanced-rag-article-5-of-5-22eaeeb42c59",
+  },
 ];
 
 // Technologies shown in the scrolling strip
@@ -94,13 +138,12 @@ export default function Home() {
             <span className="text-[1.05rem] tracking-tight">AIScientificLabs</span>
           </a>
           <div className="hidden items-center gap-7 text-sm md:flex" style={{ color: "var(--hero-muted)" }}>
-            <a href="#services" className="hover:text-white">Services</a>
-            <a href="#lab" className="hover:text-white">Lab</a>
-            <a href="#approach" className="hover:text-white">Approach</a>
-            <a href="#writing" className="hover:text-white">Writing</a>
-            <a href="#about" className="hover:text-white">About</a>
+            {navLinks.map((l) => <a key={l.href} href={l.href} className="hover:text-white">{l.label}</a>)}
           </div>
-          <a href={site.bookingUrl} className="btn-primary !px-4 !py-2 text-sm">Book a call</a>
+          <div className="flex items-center gap-3">
+            <a href={site.bookingUrl} className="btn-primary !px-4 !py-2 text-sm">Book a call</a>
+            <MobileMenu links={navLinks} />
+          </div>
         </nav>
       </header>
 
@@ -111,20 +154,20 @@ export default function Home() {
             <div>
               <BlurFade>
                 <h1 className="text-[2.6rem] sm:text-6xl lg:text-[4.1rem]">
-                  AI systems for the science that has to be right.
+                  AI Systems Built for Science. Engineered for Trust.
                 </h1>
               </BlurFade>
               <BlurFade delay={0.15}>
                 <p className="mt-6 max-w-xl text-lg sm:text-xl" style={{ color: "var(--hero-muted)" }}>
-                  We design, evaluate and deploy retrieval, agent and molecular models for drug discovery,
-                  clinical research and regulatory teams. Every system ships with measured accuracy and a
-                  human review path.
+                  We design, evaluate, and deploy reliable AI systems for drug discovery, clinical research, and
+                  regulatory intelligence. From evidence-grounded AI agents to molecular models, our solutions
+                  prioritize measurable performance, scientific rigor, and human oversight.
                 </p>
               </BlurFade>
               <BlurFade delay={0.3}>
                 <div className="mt-9 flex flex-wrap gap-3">
-                  <a href={site.bookingUrl} className="btn-primary">Book a call</a>
-                  <a href="#lab" className="btn-ghost">See the lab</a>
+                  <a href={site.bookingUrl} className="btn-primary">Book a call <span aria-hidden className="ml-1.5">&rarr;</span></a>
+                  <a href="#lab" className="btn-ghost">Explore our lab <span aria-hidden className="ml-1.5">&rarr;</span></a>
                 </div>
               </BlurFade>
             </div>
@@ -275,13 +318,17 @@ export default function Home() {
         {/* ===== Writing ===== */}
         <section className="mx-auto max-w-6xl px-5 py-24" aria-labelledby="writing">
           <SectionHead id="writing" title="Writing" intro="Notes on building AI systems that hold up in production." />
-          <a href={site.links.medium} className="bento-card group block max-w-3xl p-7 transition-colors hover:border-[color:var(--teal)]">
-            <p className="text-sm" style={{ color: "var(--muted)" }}>Medium series on enterprise RAG</p>
-            <h3 className="mt-2 text-2xl group-hover:underline">One chat interface, three sources of truth</h3>
-            <p className="mt-3" style={{ color: "var(--muted)" }}>
-              How one question-answering system routes between document retrieval, SQL and a hybrid of both.
-            </p>
-          </a>
+          <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {articles.map((a) => (
+              <li key={a.part} className="flex">
+                <a href={a.href} className="bento-card group flex w-full flex-col p-7 transition-colors hover:border-[color:var(--teal)]">
+                  <p className="text-sm" style={{ color: "var(--teal)" }}>Enterprise RAG series · Part {a.part} of 5</p>
+                  <h3 className="mt-2 text-xl group-hover:underline">{a.title}</h3>
+                  <p className="mt-3 text-[0.95rem]" style={{ color: "var(--muted)" }}>{a.body}</p>
+                </a>
+              </li>
+            ))}
+          </ol>
           <p className="mt-6"><a href={site.links.medium} className="underline underline-offset-4" style={{ color: "var(--teal)" }}>Read all articles on Medium</a></p>
         </section>
 
