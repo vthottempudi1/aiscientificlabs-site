@@ -9,6 +9,11 @@
     // the Cloudflare "Build command" field is empty
     "command": "npm ci && npm run build"
   },
+  "routes": [
+    // connect the real domain; Cloudflare creates the DNS records and SSL certificate
+    { "pattern": "aiscientificlabs.com", "custom_domain": true },
+    { "pattern": "www.aiscientificlabs.com", "custom_domain": true }
+  ],
   "assets": {
     "directory": "./out",                 // the folder Next.js static export creates
     "not_found_handling": "404-page"      // show the site's 404 page for unknown URLs
