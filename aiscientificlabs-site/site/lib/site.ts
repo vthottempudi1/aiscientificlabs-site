@@ -9,8 +9,8 @@ export const site = {
   bookingUrl: "#contact",                             // TODO: your Calendly link, e.g. https://calendly.com/yourname/30min
   formspreeId: "moejyzlz",                            // from formspree.io — the part after /f/
   links: {
-    linkedin: "https://www.linkedin.com/in/venu-thottempudi-34014ba3/",     // TODO
+    linkedin: "https://www.linkedin.com/in/venu-thottempudi-34014ba3/",
     github: "https://github.com/vthottempudi1",
-    medium: "https://medium.com/@vthottempudi1",               // TODO
+    medium: "https://medium.com/@vthottempudi1",
   },
 };
