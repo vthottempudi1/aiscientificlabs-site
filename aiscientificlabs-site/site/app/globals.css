@@ -1,0 +1,116 @@
+/* app/globals.css
+   Global styles: Tailwind import, colour tokens for light and dark mode,
+   typography, the faint hexagonal "benzene ring" pattern, and a few component styles. */
+
+@import "tailwindcss";
+
+/* ---------- Colour tokens (light mode) ---------- */
+:root {
+  --paper: #f3f6f8;     /* page background: cool lab-white, not cream */
+  --surface: #ffffff;   /* cards and panels */
+  --ink: #10233a;       /* main text: deep navy */
+  --muted: #53667b;     /* secondary text */
+  --line: #d5dee7;      /* borders and rules */
+  --teal: #0e8a82;      /* primary accent */
+  --signal: #d99a1e;    /* reagent amber: status tags and beam tail only */
+  --beam-base: rgba(120, 160, 190, 0.28);
+
+  /* the hero is always a dark instrument-panel band */
+  --hero-bg: #0d1f33;
+  --hero-ink: #e8f0f6;
+  --hero-muted: #9db2c6;
+  --hero-line: #24405c;
+  --hero-teal: #46cbbd;
+
+  --font-display: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: light;
+}
+
+/* ---------- Colour tokens (dark mode, follows the visitor's system setting) ---------- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0a1624;
+    --surface: #102035;
+    --ink: #e4edf4;
+    --muted: #93a7bb;
+    --line: #213750;
+    --teal: #3fc4b6;
+    --signal: #efb64a;
+    --beam-base: rgba(120, 170, 200, 0.22);
+    --hero-bg: #071221;
+    --hero-line: #1c3450;
+    color-scheme: dark;
+  }
+}
+
+/* ---------- Base ---------- */
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.01em; line-height: 1.12; }
+.mono { font-family: var(--font-mono); }
+::selection { background: color-mix(in srgb, var(--teal) 30%, transparent); }
+
+/* Visible keyboard focus everywhere */
+:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-radius: 4px; }
+
+/* ---------- Hexagonal benzene-ring pattern (hero background) ---------- */
+.hex-field {
+  background-color: var(--hero-bg);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='97' viewBox='0 0 56 97'%3E%3Cg fill='none' stroke='%2346cbbd' stroke-opacity='0.09' stroke-width='1'%3E%3Cpath d='M28 0 L56 16 L56 48 L28 64 L0 48 L0 16 Z'/%3E%3Cpath d='M28 64 L28 97'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 56px 97px;
+}
+
+/* ---------- Components ---------- */
+.bento-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+.status {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-size: .8125rem; color: var(--muted);
+}
+.status::before {
+  content: ""; width: .5rem; height: .5rem; border-radius: 999px; background: currentColor;
+}
+.status[data-state="live"] { color: var(--teal); }
+.status[data-state="build"] { color: var(--signal); }
+.status[data-state="planned"] { color: var(--muted); }
+
+.btn-primary {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: .7rem 1.25rem; border-radius: 8px; font-weight: 500;
+  background: var(--hero-teal); color: #062022;
+  transition: filter .15s ease;
+}
+.btn-primary:hover { filter: brightness(1.08); }
+.btn-ghost {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: .7rem 1.25rem; border-radius: 8px; font-weight: 500;
+  border: 1px solid var(--hero-line); color: var(--hero-ink);
+}
+.btn-ghost:hover { border-color: var(--hero-teal); }
+
+.field {
+  width: 100%; padding: .75rem .9rem; border-radius: 8px;
+  background: var(--paper); border: 1px solid var(--line); color: var(--ink);
+}
+.field:focus { outline: none; border-color: var(--teal); }
+
+/* ---------- Marquee animation ---------- */
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(calc(-100% - var(--gap))); } }
+.marquee-track { animation: marquee var(--duration) linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .marquee-track { animation: none; }
+}
