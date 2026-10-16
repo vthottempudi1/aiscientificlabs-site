@@ -5,12 +5,12 @@
 export const site = {
   name: "AIScientificLabs",
   founder: "Venu Thottempudi",
-  email: "TODO@aiscientificlabs.com",                 // TODO: your contact email
+  email: "Info@aiscientificlabs.com",                 // TODO: your contact email
   bookingUrl: "#contact",                             // TODO: your Calendly link, e.g. https://calendly.com/yourname/30min
-  formspreeId: "TODO_FORM_ID",                        // TODO: from formspree.io (free) — the part after /f/
+  formspreeId: "moejyzlz",                            // from formspree.io — the part after /f/
   links: {
-    linkedin: "https://www.linkedin.com/in/TODO",     // TODO
+    linkedin: "https://www.linkedin.com/in/venu-thottempudi-34014ba3/",     // TODO
     github: "https://github.com/vthottempudi1",
-    medium: "https://medium.com/@TODO",               // TODO
+    medium: "https://medium.com/@vthottempudi1",               // TODO
   },
 };
