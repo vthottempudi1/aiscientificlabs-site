@@ -4,6 +4,11 @@
 {
   "name": "aiscientificlabs-site",        // must match the project name in Cloudflare
   "compatibility_date": "2025-10-01",     // Cloudflare runtime version to use
+  "build": {
+    // wrangler deploy runs this first, so the site is built even if
+    // the Cloudflare "Build command" field is empty
+    "command": "npm ci && npm run build"
+  },
   "assets": {
     "directory": "./out",                 // the folder Next.js static export creates
     "not_found_handling": "404-page"      // show the site's 404 page for unknown URLs
