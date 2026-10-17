@@ -6,7 +6,7 @@
 import { site } from "@/lib/site";
 import { PipelineDiagram } from "@/components/pipeline-diagram";
 import { ContactForm } from "@/components/contact-form";
-import { MobileMenu } from "@/components/mobile-menu";
+import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import { NumberTicker } from "@/components/magicui/number-ticker";
 import { Marquee } from "@/components/magicui/marquee";
@@ -46,15 +46,6 @@ const steps = [
   { title: "Deploy and hand over", body: "Containerised deployment in your own cloud, with monitoring, runbooks and documentation your team owns." },
 ];
 
-// Section links in the header (and the phone menu)
-const navLinks = [
-  { href: "#services", label: "Services" },
-  { href: "#lab", label: "Lab" },
-  { href: "#approach", label: "Approach" },
-  { href: "#writing", label: "Writing" },
-  { href: "#about", label: "About" },
-];
-
 // Medium series on enterprise RAG, in reading order
 const articles = [
   {
@@ -89,20 +80,22 @@ const articles = [
   },
 ];
 
+// Public repository for the Enterprise Advanced RAG project
+const ragRepo = "https://github.com/vthottempudi1/NEW-ADV-RAG-IMPLEMENT";
+
+// What a client receives at the end of an engagement
+const deliverables = [
+  { title: "Architecture and data design", body: "A written design covering data sources, retrieval or model choice, guardrails and how the system fits your review process." },
+  { title: "A working system in your cloud", body: "Containerised services deployed to your AWS or Google Cloud account, with source code in your repository." },
+  { title: "Evaluation suite and report", body: "Your test set, the metrics it is scored on, the results for the release you accept, and the cases that still fail." },
+  { title: "Review and safety workflows", body: "Human approval steps, citations back to source documents, and guardrails for inputs and outputs." },
+  { title: "Runbooks and handover", body: "Monitoring, alerting, operating documentation and a walkthrough so your team can run and extend it." },
+];
+
 // Technologies shown in the scrolling strip
 const stack = ["Python", "PyTorch", "PyTorch Geometric", "Hugging Face", "LangGraph", "FastAPI", "Qdrant", "PostgreSQL + pgvector", "RAGAS", "AWS", "Google Cloud", "Docker"];
 
 /* ---------- Small shared pieces ---------- */
-
-// The hexagon logo mark used in the header and footer
-function LogoMark() {
-  return (
-    <svg viewBox="0 0 32 32" className="h-7 w-7" aria-hidden>
-      <path d="M16 3 L27 9.5 L27 22.5 L16 29 L5 22.5 L5 9.5 Z" fill="none" stroke="var(--hero-teal)" strokeWidth="2.2" />
-      <circle cx="16" cy="16" r="3.4" fill="var(--signal)" />
-    </svg>
-  );
-}
 
 // Status indicator for each project: live (teal), build (amber), planned (grey)
 function Status({ state, children }: { state: "live" | "build" | "planned"; children: string }) {
@@ -124,28 +117,7 @@ function SectionHead({ id, title, intro }: { id: string; title: string; intro?: 
 export default function Home() {
   return (
     <>
-      {/* Skip link for keyboard users */}
-      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-white focus:px-3 focus:py-2 focus:text-black">
-        Skip to content
-      </a>
-
-      {/* ===== Header (sticky, same colour as the hero) ===== */}
-      <header className="sticky top-0 z-40 border-b backdrop-blur"
-        style={{ background: "color-mix(in srgb, var(--hero-bg) 88%, transparent)", borderColor: "var(--hero-line)", paddingTop: "env(safe-area-inset-top)" }}>
-        <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5" aria-label="Main">
-          <a href="#top" className="flex items-center gap-2.5 font-medium" style={{ color: "var(--hero-ink)" }}>
-            <LogoMark />
-            <span className="text-[1.05rem] tracking-tight">AIScientificLabs</span>
-          </a>
-          <div className="hidden items-center gap-7 text-sm md:flex" style={{ color: "var(--hero-muted)" }}>
-            {navLinks.map((l) => <a key={l.href} href={l.href} className="hover:text-white">{l.label}</a>)}
-          </div>
-          <div className="flex items-center gap-3">
-            <a href={site.bookingUrl} className="btn-primary !px-4 !py-2 text-sm">Book a call</a>
-            <MobileMenu links={navLinks} />
-          </div>
-        </nav>
-      </header>
+      <SiteHeader />
 
       <main id="main">
         {/* ===== Hero: headline + animated data-flow diagram on the hexagon field ===== */}
@@ -167,7 +139,7 @@ export default function Home() {
               <BlurFade delay={0.3}>
                 <div className="mt-9 flex flex-wrap gap-3">
                   <a href={site.bookingUrl} className="btn-primary">Book a call <span aria-hidden className="ml-1.5">&rarr;</span></a>
-                  <a href="#lab" className="btn-ghost">Explore our lab <span aria-hidden className="ml-1.5">&rarr;</span></a>
+                  <a href="#lab" className="btn-ghost">Explore case studies <span aria-hidden className="ml-1.5">&rarr;</span></a>
                 </div>
               </BlurFade>
             </div>
@@ -182,7 +154,7 @@ export default function Home() {
           <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
             <div className="lg:sticky lg:top-28 lg:self-start">
               <SectionHead id="services" title="What we build"
-                intro="Four kinds of engagement, each grounded in systems we have built." />
+                intro="For biotech, pharmaceutical R&D and clinical research teams. Four kinds of engagement, each grounded in systems we have built." />
             </div>
             <ul className="divide-y" style={{ borderColor: "var(--line)" }}>
               {services.map((s) => (
@@ -200,7 +172,7 @@ export default function Home() {
         <section className="border-y py-24" style={{ borderColor: "var(--line)" }} aria-labelledby="lab">
           <div className="mx-auto max-w-6xl px-5">
             <SectionHead id="lab" title="The lab"
-              intro="Systems we have built and are building. Each one is a reusable component for client work." />
+              intro="Portfolio systems we have built and are building, each labelled with its real stage. They become reusable components for client work." />
 
             <BentoGrid>
               {/* TrialSentinel: the flagship, largest tile */}
@@ -214,7 +186,7 @@ export default function Home() {
                 </p>
                 <dl className="mt-auto grid grid-cols-2 gap-6 pt-8">
                   <div>
-                    <dt className="text-sm" style={{ color: "var(--muted)" }}>Studies in scope</dt>
+                    <dt className="text-sm" style={{ color: "var(--muted)" }}>Studies in the searchable registry</dt>
                     <dd className="text-4xl" style={{ fontFamily: "var(--font-display)" }}><NumberTicker value={400000} />+</dd>
                   </div>
                   <div>
@@ -226,7 +198,7 @@ export default function Home() {
 
               {/* Enterprise Advanced RAG: proof of production depth */}
               <BentoCard className="lg:col-span-2">
-                <Status state="live">In production</Status>
+                <Status state="live">Deployed on AWS · portfolio</Status>
                 <h3 className="mt-4 text-2xl">Enterprise Advanced RAG</h3>
                 <p className="mt-3 text-[0.95rem]" style={{ color: "var(--muted)" }}>
                   Hybrid dense and sparse retrieval with reranking, corrective RAG with critic and verifier
@@ -242,7 +214,13 @@ export default function Home() {
                     <dd className="text-3xl" style={{ fontFamily: "var(--font-display)" }}><NumberTicker value={0.992} decimals={3} /></dd>
                   </div>
                 </dl>
-                <p className="mt-2 text-xs" style={{ color: "var(--muted)" }}>RAGAS evaluation scores</p>
+                <p className="mt-2 text-xs" style={{ color: "var(--muted)" }}>
+                  RAGAS scores on a 40-question challenge set over 363 sources, 314 of them distractors (Cloud-v2 release, July 2026)
+                </p>
+                <div className="mt-4 flex gap-5 text-sm">
+                  <a href="/projects/enterprise-rag/" className="underline underline-offset-4" style={{ color: "var(--teal)" }}>Read the case study</a>
+                  <a href={ragRepo} className="underline underline-offset-4" style={{ color: "var(--teal)" }}>Code on GitHub</a>
+                </div>
               </BentoCard>
 
               {/* MolDocIQ: chemistry-aware document ingestion */}
@@ -306,6 +284,16 @@ export default function Home() {
               </li>
             ))}
           </ol>
+
+          <h3 className="mt-16 text-2xl">What you receive</h3>
+          <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {deliverables.map((d) => (
+              <li key={d.title} className="bento-card p-6">
+                <h4 className="text-lg" style={{ fontFamily: "var(--font-display)" }}>{d.title}</h4>
+                <p className="mt-2 text-[0.95rem]" style={{ color: "var(--muted)" }}>{d.body}</p>
+              </li>
+            ))}
+          </ul>
         </section>
 
         {/* ===== Tech stack strip ===== */}
@@ -335,16 +323,19 @@ export default function Home() {
         {/* ===== Founder ===== */}
         <section className="border-t" style={{ borderColor: "var(--line)" }} aria-labelledby="about">
           <div className="mx-auto grid max-w-6xl gap-10 px-5 py-24 lg:grid-cols-[0.8fr_1.2fr]">
-            <h2 id="about" className="text-3xl sm:text-[2.6rem]">Founder</h2>
+            <div>
+              <h2 id="about" className="text-3xl sm:text-[2.6rem]">Founder &amp; scientific expertise</h2>
+              <p className="mt-4 text-lg" style={{ color: "var(--teal)" }}>Scientific expertise meets production AI engineering.</p>
+            </div>
             <div className="max-w-[62ch] text-lg">
               <p>
-                {site.founder} is an AI solutions architect with more than twelve years in enterprise software
-                engineering. He builds production retrieval, agent and molecular AI systems and deploys them on
-                AWS and Google Cloud.
+                Founded by {site.founder}, PhD in Chemistry, AIScientificLabs combines scientific domain expertise
+                with more than 12 years of enterprise software engineering experience.
               </p>
               <p className="mt-4" style={{ color: "var(--muted)" }}>
-                AIScientificLabs brings that engineering discipline to life-science teams that need AI they can
-                measure, review and trust.
+                Our focus is building reliable, evidence-grounded AI systems for drug discovery, clinical research and
+                regulatory intelligence, bridging scientific understanding with scalable AI architecture, rigorous
+                evaluation and human oversight.
               </p>
               <div className="mt-6 flex gap-6 text-base">
                 <a href={site.links.linkedin} className="underline underline-offset-4" style={{ color: "var(--teal)" }}>LinkedIn</a>
@@ -372,17 +363,7 @@ export default function Home() {
         </section>
       </main>
 
-      {/* ===== Footer ===== */}
-      <footer className="border-t" style={{ borderColor: "var(--line)", paddingBottom: "env(safe-area-inset-bottom)" }}>
-        <div className="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-10 text-sm sm:flex-row sm:items-center sm:justify-between" style={{ color: "var(--muted)" }}>
-          <div className="flex items-center gap-2"><LogoMark /><span>© {new Date().getFullYear()} AIScientificLabs</span></div>
-          <div className="flex gap-6">
-            <a href={site.links.linkedin} className="hover:underline">LinkedIn</a>
-            <a href={site.links.github} className="hover:underline">GitHub</a>
-            <a href={`mailto:${site.email}`} className="hover:underline">Email</a>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }
