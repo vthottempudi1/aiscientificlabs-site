@@ -80,6 +80,25 @@ const articles = [
   },
 ];
 
+// The three strengths that set the lab apart, shown right after the hero
+const pillars = [
+  {
+    label: "Scientific depth",
+    title: "PhD in Chemistry",
+    body: "We understand the structures, assays, protocols and regulatory documents your data comes from, not just the text around them.",
+  },
+  {
+    label: "Production engineering",
+    title: "12+ years of enterprise software",
+    body: "Cloud deployment, security, monitoring and documentation, built the way production systems need to be.",
+  },
+  {
+    label: "Measured rigor",
+    title: "Evaluated, not just demoed",
+    body: "Every client system ships with a test set, metrics, documented limitations and a human review path. Lab projects publish their evaluations as they mature.",
+  },
+];
+
 // Public repository for the Enterprise Advanced RAG project
 const ragRepo = "https://github.com/vthottempudi1/NEW-ADV-RAG-IMPLEMENT";
 
@@ -149,6 +168,24 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ===== Why us: scientist + engineer + evaluated systems ===== */}
+        <section className="border-b" style={{ borderColor: "var(--line)" }} aria-labelledby="why">
+          <div className="mx-auto max-w-6xl px-5 py-20">
+            <h2 id="why" className="max-w-3xl text-3xl sm:text-[2.4rem]">
+              Rigorous systems for scientific workflows, not experiments with scientific AI.
+            </h2>
+            <ul className="mt-12 grid gap-10 md:grid-cols-3">
+              {pillars.map((p) => (
+                <li key={p.label} className="border-t pt-5" style={{ borderColor: "var(--teal)" }}>
+                  <p className="text-sm" style={{ color: "var(--teal)" }}>{p.label}</p>
+                  <h3 className="mt-2 text-2xl">{p.title}</h3>
+                  <p className="mt-3" style={{ color: "var(--muted)" }}>{p.body}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
         {/* ===== Services: sticky heading on the left, ruled list on the right ===== */}
         <section className="mx-auto max-w-6xl px-5 py-24" aria-labelledby="services">
           <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
@@ -172,7 +209,7 @@ export default function Home() {
         <section className="border-y py-24" style={{ borderColor: "var(--line)" }} aria-labelledby="lab">
           <div className="mx-auto max-w-6xl px-5">
             <SectionHead id="lab" title="The lab"
-              intro="Portfolio systems we have built and are building, each labelled with its real stage. They become reusable components for client work." />
+              intro="Scientific AI systems built to the standard we deliver to clients: evaluated, documented and labelled with their real stage. Each becomes a reusable component for client work." />
 
             <BentoGrid>
               {/* TrialSentinel: the flagship, largest tile */}
