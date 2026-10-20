@@ -112,7 +112,7 @@ const deliverables = [
 ];
 
 // Technologies shown in the scrolling strip
-const stack = ["Python", "PyTorch", "PyTorch Geometric", "Hugging Face", "LangGraph", "FastAPI", "Qdrant", "PostgreSQL + pgvector", "RAGAS", "AWS", "Google Cloud", "Docker"];
+const stack = ["Python", "PyTorch", "PyTorch Geometric", "Hugging Face", "LangGraph", "RDKit", "ChemBERTa-2", "SMILES", "DECIMER", "Nougat", "RxnScribe", "ChEMBL", "PubChem", "TDC", "MoleculeNet", "PubMed", "UniProt", "ClinicalTrials.gov","FastAPI", "Qdrant", "PostgreSQL + pgvector", "RAGAS", "AWS", "Google Cloud", "Docker"];
 
 /* ---------- Small shared pieces ---------- */
 
