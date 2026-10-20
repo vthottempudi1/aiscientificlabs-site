@@ -294,6 +294,26 @@ export default function Home() {
                 </p>
               </BentoCard>
 
+              {/* Regulatory copilot: next client-facing product */}
+              <BentoCard className="lg:col-span-3">
+                <Status state="planned">Planned</Status>
+                <h3 className="mt-4 text-2xl">Regulatory copilot</h3>
+                <p className="mt-3 text-[0.95rem]" style={{ color: "var(--muted)" }}>
+                  Question answering and draft checking against FDA guidance, ICH guidelines and 21 CFR Part 11,
+                  with a citation to the source passage for every claim and reviewer approval before anything is used.
+                </p>
+              </BentoCard>
+
+              {/* Lab automation: feasibility work, no built system yet */}
+              <BentoCard className="lg:col-span-3">
+                <Status state="planned">Exploring feasibility</Status>
+                <h3 className="mt-4 text-2xl">Laboratory automation agents</h3>
+                <p className="mt-3 text-[0.95rem]" style={{ color: "var(--muted)" }}>
+                  Assessing where AI can safely connect to laboratory instruments, ELN and LIMS software and
+                  medical devices: protocol planning, run monitoring and result review, with a person approving every action.
+                </p>
+              </BentoCard>
+
               {/* SynthPath: what comes next */}
               <BentoCard className="lg:col-span-6 sm:flex-row sm:items-center sm:gap-8">
                 <div className="shrink-0"><Status state="planned">Planned</Status></div>
