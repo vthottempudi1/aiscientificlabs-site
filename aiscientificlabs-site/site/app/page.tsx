@@ -112,7 +112,7 @@ const deliverables = [
 ];
 
 // Technologies shown in the scrolling strip
-const stack = ["Python", "PyTorch", "PyTorch Geometric", "Hugging Face", "LangGraph", "RDKit", "ChemBERTa-2", "SMILES", "DECIMER", "Nougat", "RxnScribe", "ChEMBL", "PubChem", "TDC", "MoleculeNet", "PubMed", "UniProt", "ClinicalTrials.gov","FastAPI", "Qdrant", "PostgreSQL + pgvector", "RAGAS", "AWS", "Google Cloud", "Docker"];
+const stack = ["Python", "PyTorch", "PyTorch Geometric", "Hugging Face", "LangGraph", "RDKit", "ChemBERTa-2", "SMILES", "DECIMER", "Nougat", "RxnScribe", "ChEMBL", "PubChem", "TDC", "MoleculeNet", "PubMed", "UniProt", "ClinicalTrials.gov","FastAPI", "Qdrant", "PostgreSQL + pgvector", "sentence-transformers", "LoRA", "MLflow", "RAGAS", "AWS", "AWS ECS Fargate", "Google Cloud", "Docker"];
 
 /* ---------- Small shared pieces ---------- */
 
@@ -297,10 +297,10 @@ export default function Home() {
               {/* Regulatory copilot: next client-facing product */}
               <BentoCard className="lg:col-span-3">
                 <Status state="planned">Planned</Status>
-                <h3 className="mt-4 text-2xl">Regulatory copilot</h3>
+                <h3 className="mt-4 text-2xl">Regulatory quality copilot</h3>
                 <p className="mt-3 text-[0.95rem]" style={{ color: "var(--muted)" }}>
-                  Question answering and draft checking against FDA guidance, ICH guidelines and 21 CFR Part 11,
-                  with a citation to the source passage for every claim and reviewer approval before anything is used.
+                  Deviation and CAPA triage against the public FDA warning letter record, and change impact across
+                  guidance revisions. Every claim cites its source passage, and a qualified reviewer makes the decision.
                 </p>
               </BentoCard>
 
