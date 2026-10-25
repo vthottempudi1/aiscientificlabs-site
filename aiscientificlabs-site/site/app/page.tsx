@@ -302,6 +302,10 @@ export default function Home() {
                   Deviation and CAPA triage against the public FDA warning letter record, and change impact across
                   guidance revisions. Every claim cites its source passage, and a qualified reviewer makes the decision.
                 </p>
+                <p className="mt-3 text-[0.95rem]" style={{ color: "var(--muted)" }}>
+                  Built on a documented intended use, pinned model and corpus versions, and an audit trail of every
+                  query and reviewer action.
+                </p>
               </BentoCard>
 
               {/* Lab automation: feasibility work, no built system yet */}
