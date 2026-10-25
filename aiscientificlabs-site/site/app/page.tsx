@@ -150,7 +150,7 @@ export default function Home() {
               </BlurFade>
               <BlurFade delay={0.15}>
                 <p className="mt-6 max-w-xl text-lg sm:text-xl" style={{ color: "var(--hero-muted)" }}>
-                  We design, evaluate, and deploy reliable AI systems for drug discovery, clinical research, and
+                  We design, build, evaluate, and deploy reliable AI systems for drug discovery, clinical research, and
                   regulatory intelligence. From evidence-grounded AI agents to molecular models, our solutions
                   prioritize measurable performance, scientific rigor, and human oversight.
                 </p>
