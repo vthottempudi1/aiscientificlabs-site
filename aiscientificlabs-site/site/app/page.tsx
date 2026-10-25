@@ -322,9 +322,9 @@ export default function Home() {
               <BentoCard className="lg:col-span-6 sm:flex-row sm:items-center sm:gap-8">
                 <div className="shrink-0"><Status state="planned">Planned · synthetic data</Status></div>
                 <div>
-                  <h3 className="mt-3 text-2xl sm:mt-0">Audit trail anomaly detection</h3>
+                  <h3 className="mt-3 text-2xl sm:mt-0">GxP audit trail review</h3>
                   <p className="mt-1" style={{ color: "var(--muted)" }}>
-                    Ranks audit trail events for human review: backdated entries, records changed shortly before release,
+                    Anomaly detection that ranks audit trail events for human review: backdated entries, records changed shortly before release,
                     repeated failed logins. Built and evaluated on a generated audit trail with known anomalies, so it
                     shows the detection approach, not real-world detection rates.
                   </p>
