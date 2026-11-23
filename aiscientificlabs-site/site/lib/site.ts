@@ -5,6 +5,7 @@
 export const site = {
   name: "AIScientificLabs",
   founder: "Venu Thottempudi",
+  location: "San Francisco, California, USA",
   email: "Info@aiscientificlabs.com",
   bookingUrl: "https://calendly.com/aiscientificlabs-info/new-meeting",
   formspreeId: "moejyzlz",                            // from formspree.io — the part after /f/

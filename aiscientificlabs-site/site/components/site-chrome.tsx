@@ -56,7 +56,7 @@ export function SiteFooter() {
   return (
     <footer className="border-t" style={{ borderColor: "var(--line)", paddingBottom: "env(safe-area-inset-bottom)" }}>
       <div className="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-10 text-sm sm:flex-row sm:items-center sm:justify-between" style={{ color: "var(--muted)" }}>
-        <div className="flex items-center gap-2"><LogoMark /><span>© {new Date().getFullYear()} AIScientificLabs</span></div>
+        <div className="flex items-center gap-2"><LogoMark /><span>© {new Date().getFullYear()} AIScientificLabs · {site.location}</span></div>
         <div className="flex gap-6">
           <a href={site.links.linkedin} className="hover:underline">LinkedIn</a>
           <a href={site.links.github} className="hover:underline">GitHub</a>

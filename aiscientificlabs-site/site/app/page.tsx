@@ -433,7 +433,7 @@ export default function Home() {
             </div>
             <div className="max-w-[62ch] text-lg">
               <p>
-                Founded by {site.founder}, PhD in Chemistry, AIScientificLabs combines scientific domain expertise
+                Founded by {site.founder}, PhD in Chemistry, AIScientificLabs is based in {site.location}. It combines scientific domain expertise
                 with more than 12 years of enterprise software engineering experience.
               </p>
               <p className="mt-4" style={{ color: "var(--muted)" }}>
@@ -461,6 +461,7 @@ export default function Home() {
               <p className="mt-8" style={{ color: "var(--hero-muted)" }}>
                 Or email <a href={`mailto:${site.email}`} className="underline underline-offset-4" style={{ color: "var(--hero-teal)" }}>{site.email}</a>
               </p>
+              <p className="mt-2" style={{ color: "var(--hero-muted)" }}>Based in {site.location}</p>
             </div>
             <div style={{ color: "var(--ink)" }}><ContactForm /></div>
           </div>

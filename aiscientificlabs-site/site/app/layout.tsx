@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://aiscientificlabs.com"),
   title: "AIScientificLabs | AI systems for drug discovery, clinical and regulatory science",
   description:
-    "AIScientificLabs designs and deploys retrieval, agent and molecular AI systems for life-science teams: scientific document intelligence, ADMET and property prediction, clinical trial and regulatory copilots.",
+    "AIScientificLabs, based in San Francisco, California, USA, designs and deploys retrieval, agent and molecular AI systems for life-science teams: scientific document intelligence, ADMET and property prediction, clinical trial and regulatory copilots.",
   openGraph: {
     title: "AIScientificLabs",
     description: "Production AI systems for drug discovery, clinical research and regulatory science.",
@@ -41,7 +41,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "AIScientificLabs",
+              url: "https://aiscientificlabs.com",
+              address: { "@type": "PostalAddress", addressLocality: "San Francisco", addressRegion: "CA", addressCountry: "US" },
+            }),
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }
