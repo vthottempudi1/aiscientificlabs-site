@@ -100,6 +100,7 @@ const pillars = [
 ];
 
 // Public repository for the Enterprise Advanced RAG project
+const traceRepo = "https://github.com/vthottempudi1/TrialTrace";
 const ragRepo = "https://github.com/vthottempudi1/NEW-ADV-RAG-IMPLEMENT";
 
 // What a client receives at the end of an engagement
@@ -212,25 +213,58 @@ export default function Home() {
               intro="Scientific AI systems built to the standard we deliver to clients: evaluated, documented and labelled with their real stage. Each becomes a reusable component for client work." />
 
             <BentoGrid>
-              {/* TrialSentinel: the flagship, largest tile */}
+              {/* TrialTrace: the flagship, largest tile */}
               <BentoCard className="lg:col-span-4">
-                <Status state="build">In build</Status>
-                <h3 className="mt-4 text-3xl">TrialSentinel</h3>
-                <p className="mt-1" style={{ color: "var(--teal)" }}>Multi-agent clinical trial intelligence engine</p>
+                <Status state="live">v1 completed · deployed on Google Cloud</Status>
+                <h3 className="mt-4 text-3xl">TrialTrace</h3>
+                <p className="mt-1" style={{ color: "var(--teal)" }}>Clinical trial evidence intelligence platform</p>
                 <p className="mt-4 max-w-[60ch]" style={{ color: "var(--muted)" }}>
-                  Six specialist agents search and reason over ClinicalTrials.gov, with three-tier memory and a
-                  human-in-the-loop learning loop that improves answers from reviewer feedback. Runs on Google Cloud.
+                  Checks whether the outcomes a trial registered on ClinicalTrials.gov are reported in its linked PubMed
+                  abstracts. An LLM reader finds each outcome, and code verifies every quote against the source text.
+                  Reviewers accept, correct or defer each finding, with a full audit history.
+                </p>
+                <ul className="mt-3 list-disc pl-5 text-[0.95rem]" style={{ color: "var(--muted)" }}>
+                  <li>Pipeline status for every trial, from registry download to human review</li>
+                  <li>Registry change tracking, results-posting status and sponsor reporting counts</li>
+                  <li>Google sign-in, raw source backup to Cloud Storage, CI/CD to Cloud Run, CSV and Markdown export</li>
+                </ul>
+                <p className="mt-4 text-[0.95rem]" style={{ color: "var(--muted)" }}>
+                  <span style={{ color: "var(--teal)" }}>v1, completed:</span> registry versus paper abstracts.{" "}
+                  <span style={{ color: "var(--teal)" }}>v2, future scope:</span> safety study comparisons.{" "}
+                  <span style={{ color: "var(--teal)" }}>v3, future scope:</span> full paper text versus registry.
                 </p>
                 <dl className="mt-auto grid grid-cols-2 gap-6 pt-8">
                   <div>
-                    <dt className="text-sm" style={{ color: "var(--muted)" }}>Studies in the searchable registry</dt>
-                    <dd className="text-4xl" style={{ fontFamily: "var(--font-display)" }}><NumberTicker value={400000} />+</dd>
+                    <dt className="text-sm" style={{ color: "var(--muted)" }}>Precision</dt>
+                    <dd className="text-4xl" style={{ fontFamily: "var(--font-display)" }}><NumberTicker value={91} />%</dd>
                   </div>
                   <div>
-                    <dt className="text-sm" style={{ color: "var(--muted)" }}>Specialist agents</dt>
-                    <dd className="text-4xl" style={{ fontFamily: "var(--font-display)" }}><NumberTicker value={6} /></dd>
+                    <dt className="text-sm" style={{ color: "var(--muted)" }}>Recall</dt>
+                    <dd className="text-4xl" style={{ fontFamily: "var(--font-display)" }}><NumberTicker value={80} />%</dd>
                   </div>
                 </dl>
+                <p className="mt-2 text-xs" style={{ color: "var(--muted)" }}>
+                  Scored on 19 trials the reader had not seen (20 of 22 and 20 of 25). A small set, with 95% ranges of 72–97% and 61–91%.
+                  Labels were partly AI-drafted and checked by a person.
+                </p>
+                <div className="mt-4 flex gap-5 text-sm">
+                  <a href={traceRepo} className="underline underline-offset-4" style={{ color: "var(--teal)" }}>Code on GitHub</a>
+                </div>
+              </BentoCard>
+
+              {/* AI Incident Commander: blueprint stage, no measured results */}
+              <BentoCard className="lg:col-span-2">
+                <Status state="planned">Blueprint · not yet evaluated</Status>
+                <h3 className="mt-4 text-2xl">AI Incident Commander</h3>
+                <p className="mt-1" style={{ color: "var(--teal)" }}>Multi-agent incident investigation</p>
+                <p className="mt-3 text-[0.95rem]" style={{ color: "var(--muted)" }}>
+                  A supervisor, metrics and logs investigators and a causal critic work through recorded incidents to
+                  find the root-cause service. Read-only tools, enforced budgets and an evidence ledger keep every claim traceable.
+                </p>
+                <p className="mt-3 text-[0.95rem]" style={{ color: "var(--muted)" }}>
+                  Designed as an experiment: deterministic rules, a single agent and the multi-agent team are compared
+                  on the public RCAEval benchmark, to test whether delegation justifies its cost.
+                </p>
               </BentoCard>
 
               {/* Enterprise Advanced RAG: proof of production depth */}
